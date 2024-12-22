@@ -25,6 +25,7 @@ export interface QuestionBankProps {
 
 interface QuizContextProps {
     quizes: QuizProps[] | [];
+    result: any;
     loading: any;
     fetchResult: (hash: any) => void;
     downloadResult: (quizID: string) => void;
@@ -41,6 +42,8 @@ const QuizContext = createContext<QuizContextProps | undefined>(undefined);
 export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
     const router = useRouter()
+
+    const [result, setResult] = useState()
 
     const [quizes, setQuizes] = useState<QuizProps[] | []>([]);
     const [loading, setLoading] = useState<any>();
@@ -157,17 +160,17 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setLoading({ result: true })
         try {
             const res: any = await SendRequest('/result/fetch/', 'POST', { hash });
-            if (!res.data || !res.data?.hash) throw res.data?.error
-            return res.data
+            if (!res.data || !res.data?.result) throw res.data?.error
+            setResult(res.data)
         } catch (error: any) {
-            alert(error.toString())
+            alert(error)
         } finally {
             setLoading({ result: false })
         }
     }
 
     return (
-        <QuizContext.Provider value={{ fetchResult, downloadResult, submitAnswers, quizes, loading, fetchAllQuizes, getTimer, fetchQuestions, quizStatus, questionBank }}>
+        <QuizContext.Provider value={{ result, fetchResult, downloadResult, submitAnswers, quizes, loading, fetchAllQuizes, getTimer, fetchQuestions, quizStatus, questionBank }}>
             {children}
         </QuizContext.Provider>
     );

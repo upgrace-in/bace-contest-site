@@ -8,14 +8,22 @@ export default function Handler() {
 
     const { hash } = useParams()
 
-    const { fetchResult } = useQuizContext();
+    const { fetchResult, result } = useQuizContext();
 
     useEffect(() => {
         if (hash)
             fetchResult(hash)
     }, [hash])
 
+    useEffect(() => {
+        if (result)
+            console.log(result)
+    }, [result])
+
     return (
-        <h1>Display the image & adjust the items</h1>
+        <>
+            <h1>Display the image & adjust the items</h1>
+            {JSON.stringify(result) || ''}
+        </>
     )
 }
