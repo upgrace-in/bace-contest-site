@@ -33,7 +33,7 @@ interface QuizContextProps {
     quizStatus: string;
     fetchAllQuizes: () => void;
     getTimer: (startDate: QuizProps["startDate"], endDate: QuizProps["endDate"]) => string;
-    fetchQuestions: (questionBankID: string) => Promise<void>;
+    fetchQuestions: (questionBankID: string, quizID: string) => Promise<void>;
 }
 
 const QuizContext = createContext<QuizContextProps | undefined>(undefined);
@@ -97,17 +97,16 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return timeLeft
     }
 
-    const fetchQuestions = async (questionBankID: string) => {
+    const fetchQuestions = async (questionBankID: string, quizID: string) => {
         setLoading({ questions: true }); // Set loading state
         try {
-            const res: any = await SendRequest('/questions/get', 'POST', { questionBankID });
-            if (res.data) {
-                setQuestions(res.data)
-                router.push('/start/quiz')
-            }
-        } catch (error) {
-            alert("Something went wrong!!!")
-            console.error('Error fetching questions:', error);
+            const res: any = await SendRequest('/questions/get', 'POST', { questionBankID, quizID });
+            if (!res.data.status) throw res.data
+            setQuestions(res.data)
+            router.push('/start/quiz')
+        } catch (error: any) {
+            alert(error?.message || "Something went wrong!!!")
+            console.error('Error fetching questions:', error.message);
         } finally {
             setTimeout(() => {
                 setLoading({ questions: false });
