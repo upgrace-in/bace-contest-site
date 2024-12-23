@@ -81,6 +81,8 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const startTime = startDate?._seconds ? new Date(startDate._seconds * 1000).getTime() : null;
         const endTime = endDate?._seconds ? new Date(endDate._seconds * 1000).getTime() : null;
 
+        // creatung git usage video
+
         const now = Date.now();
         let status = '';
         let timeLeft = '';
