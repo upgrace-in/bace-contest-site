@@ -25,9 +25,17 @@ export async function middleware(req: NextRequest) {
         return NextResponse.redirect(url);
     }
 
+    if (
+        url.pathname === "/api/auth/signin" &&
+        url.searchParams.get("error") === "OAuthCallback"
+    ) {
+        url.pathname = "/dashboard";
+        return NextResponse.redirect("/")
+    }
+
     return NextResponse.next();
 }
 
 export const config = {
-    matcher: ["/", "/dashboard", "/register"],
-};
+    matcher: ["/", "/dashboard", "/register", "/api/auth/signin"],
+}
