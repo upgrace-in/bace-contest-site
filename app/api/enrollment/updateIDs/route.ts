@@ -34,7 +34,7 @@ const updateIDs = async (IDs: any[]) => {
 export async function POST(req: NextRequest) {
     try {
         const { key } = await req.json()
-        if (key !== "PASS$@&$") throw "Invalid Key!"
+        if (key !== process.env.NEXTAUTH_SECRET) throw "Invalid Key!"
         const csvFilePath = path.join(process.cwd(), '/utils/enrollmentIDs.csv');
         const combinedDigits = await extractCombinedDigit(csvFilePath);
         updateIDs(combinedDigits)
