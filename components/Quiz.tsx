@@ -16,7 +16,7 @@ export default function Quiz({ id, name, startDate, endDate, questionBankID }: Q
     return (
         <div key={id} className="p-4 rounded shadow bg-white">
             <h2 className="text-xl font-bold text-black">{name}</h2>
-            <h3 className="text-sm text-gray-500">Question Bank ID: {questionBankID}</h3>
+            {/* <h3 className="text-sm text-gray-500">Question Bank ID: {questionBankID}</h3> */}
             <div className="mt-4">
                 {loading?.questions || loading?.result ? (
                     <div className="flex items-center space-x-2">
@@ -31,12 +31,12 @@ export default function Quiz({ id, name, startDate, endDate, questionBankID }: Q
 
                         {/* Buttons */}
                         <div className="flex flex-wrap gap-4 mt-4">
-                            <button
+                            {/* <button
                                 className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
                                 onClick={() => fetchQuestions(questionBankID, id)}
                             >
                                 Start Quiz
-                            </button>
+                            </button> */}
                             {quizStatus === 'afterStart' && (
                                 <button
                                     className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"

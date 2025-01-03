@@ -72,10 +72,11 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const calculateTimeLeft = (targetTime: number) => {
             const now = Date.now();
             const difference = targetTime - now;
+            const days = Math.floor((difference / (1000 * 60 * 60 * 24)));
             const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
             const minutes = Math.floor((difference / (1000 * 60)) % 60);
             const seconds = Math.floor((difference / 1000) % 60);
-            return `${hours}h ${minutes}m ${seconds}s`;
+            return `${days}d ${hours}h ${minutes}m ${seconds}s`;
         };
 
         const startTime = startDate?._seconds ? new Date(startDate._seconds * 1000).getTime() : null;

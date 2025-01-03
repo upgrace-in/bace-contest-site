@@ -21,11 +21,11 @@ export default function Step({ step, stepOrder, setStep }: StepProps) {
                 },
                 active: {
                     backgroundColor: "#fff",
-                    borderColor: "#333",
-                    color: "#333"
+                    borderColor: "#13012d",
+                    color: "#13012d"
                 },
                 complete: {
-                    backgroundColor: "#111"
+                    backgroundColor: "#13012d"
                 }
             }}
             transition={{ duration: 0.5 }}
