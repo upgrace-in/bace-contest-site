@@ -40,11 +40,12 @@ export default function Register() {
                 setPending(false)
             }
         } else {
-            setStep(step + 1)
+            setStep(step + 1)            
         }
     }
 
     useEffect(() => {
+        document.title = "PRAJÑĀ 2025: Register";
         if (session?.data?.isNewUser == false)
             router.push("/dashboard")
     }, [session])
@@ -240,7 +241,7 @@ export default function Register() {
                         disabled={isPending}
                         className="bg-black text-white py-2 px-8 rounded-full"
                     >
-                        {!isPending ? step === 3 || step === 4 ? "Review" : step === 5 ? "Submit" : "Next" : "Submitting..."}
+                        {!isPending ? step === 4 ? "Review" : step === 5 ? "Submit" : "Next" : "Submitting..."}
                     </button>
                 </div>
             </div>

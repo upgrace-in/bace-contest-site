@@ -13,6 +13,10 @@ export default function RootLayout({
 }): React.JSX.Element {
   return (
     <html lang="en">
+      <head>
+      <meta name="theme-color" content="#13012d" />
+      <title>PRAJÑĀ 2025</title>
+      </head>
       <body>
         <SessionProvider>
           <QuizProvider>
