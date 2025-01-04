@@ -89,14 +89,14 @@ export default function QuizForm() {
                 {currentStep < totalSteps - 1 ? (
                     <button
                         onClick={handleNextStep}
-                        className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow hover:bg-blue-600"
+                        className="px-6 py-2 bg-purple-950 text-white font-semibold rounded-lg shadow hover:bg-purple-800"
                     >
                         Next
                     </button>
                 ) : (
                     <button
                         onClick={handleSubmit}
-                        className="px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow hover:bg-green-600"
+                        className="px-6 py-2 bg-green-600 text-white font-semibold rounded-lg shadow hover:bg-green-700"
                     >
                         Submit
                     </button>

@@ -21,11 +21,11 @@ export default function Step({ step, stepOrder, setStep }: StepProps) {
                 },
                 active: {
                     backgroundColor: "#fff",
-                    borderColor: "#13012d",
-                    color: "#13012d"
+                    borderColor: "#3b0764",
+                    color: "#3b0764"
                 },
                 complete: {
-                    backgroundColor: "#13012d"
+                    backgroundColor: "#3b0764"
                 }
             }}
             transition={{ duration: 0.5 }}
@@ -44,7 +44,7 @@ function CheckIcon() {
             fill="none"
             viewBox="0 96 960 960"
             stroke="currentColor"
-            strokeWidth={80}
+            strokeWidth={90}
         >
             <motion.path
                 initial={{ pathLength: 0 }}

@@ -85,7 +85,7 @@ export default function Register() {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="flex items-center justify-center min-h-screen bg-purple-100">
             <div className="bg-white p-10 rounded-2xl w-max shadow-lg">
                 <div className="flex gap-8 justify-center mb-6">
                     {Array.from({ length: 5 }, (_, i) => (
@@ -104,7 +104,7 @@ export default function Register() {
                                 name="enrollmentID"
                                 value={formData.enrollmentID}
                                 onChange={handleChange}
-                                className="p-3 border rounded-lg w-full text-black focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                className="p-3 border rounded-lg w-full text-black focus:outline-none focus:ring-2 focus:ring-purple-950"
                             />
                         </div>
                     )}
@@ -118,7 +118,7 @@ export default function Register() {
                                 name="contactNumber"
                                 value={formData.contactNumber}
                                 onChange={handleChange}
-                                className="p-3 border rounded-lg w-full text-black focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                className="p-3 border rounded-lg w-full text-black focus:outline-none focus:ring-2 focus:ring-purple-950"
                             />
                         </div>
                     )}
@@ -131,7 +131,7 @@ export default function Register() {
                                 name="institutionName"
                                 value={formData.institutionName}
                                 onChange={handleChange}
-                                className="p-3 border rounded-lg w-full text-black focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                className="p-3 border rounded-lg w-full text-black focus:outline-none focus:ring-2 focus:ring-purple-950"
                             >
                                 <option value="">Select Institution</option>
                                 <option value="Sharda University">Sharda University</option>
@@ -158,7 +158,7 @@ export default function Register() {
                                         name="institutionNameOther"
                                         value={formData.institutionNameOther}
                                         onChange={handleChange}
-                                        className="p-3 border rounded-lg w-full text-black focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="p-3 border rounded-lg w-full text-black focus:outline-none focus:ring-2 focus:ring-purple-950"
                                     />
                                 </div>
                             )}
@@ -173,7 +173,7 @@ export default function Register() {
                                 name="category"
                                 value={formData.category}
                                 onChange={handleChange}
-                                className="p-3 border rounded-lg w-full text-black focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                className="p-3 border rounded-lg w-full text-black focus:outline-none focus:ring-2 focus:ring-purple-950"
                             >
                                 <option value="">Select Category</option>
                                 <option value="Class 9-12">Class 9-12</option>
@@ -229,17 +229,19 @@ export default function Register() {
                 }
 
                 <div className="flex justify-between mt-4">
+                    { step > 1 && (
                     <button
-                        className="text-gray-700 px-6 py-2 rounded-lg"
+                        className="text-gray-700 hover:bg-gray-200 px-8 py-2 rounded-full"
                         onClick={back}
                         disabled={step === 1}
                     >
                         Back
-                    </button>
+                    </button>)
+                    }
                     <button
                         onClick={nextStep}
                         disabled={isPending}
-                        className="bg-black text-white py-2 px-8 rounded-full"
+                        className="bg-purple-950 text-white py-2 px-8 rounded-full"
                     >
                         {!isPending ? step === 4 ? "Review" : step === 5 ? "Submit" : "Next" : "Submitting..."}
                     </button>
