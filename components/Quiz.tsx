@@ -25,7 +25,7 @@ export default function Quiz({ id, name, startDate, endDate, questionBankID }: Q
                     </div>
                 ) : (
                     <>
-                        {quizStatus === 'beforeStart' && <p className="text-blue-500">Starts in: {timeLeft}</p>}
+                        {quizStatus === 'beforeStart' && <p className="text-blue-500">Starting in: {timeLeft}</p>}
                         {quizStatus === 'afterStart' && <p className="text-green-500">Quiz ends in: {timeLeft}</p>}
                         {quizStatus === 'ended' && <p className="text-red-500">{timeLeft}</p>}
 
