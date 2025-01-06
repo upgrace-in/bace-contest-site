@@ -11,8 +11,9 @@ async function handler(req: NextRequest) {
         }).then(async () => {
 
             await dbFunc.add('users', body.email, {
-                name: body.name,
+                fullName: body.personName,
                 email: body.email,
+                emailLinkedName: body.name,
                 enrollmentID: body.enrollmentID,
                 contactNumber: body.contactNumber,
                 institutionName: body?.institutionName ? body.institutionName : body.institutionNameOther,

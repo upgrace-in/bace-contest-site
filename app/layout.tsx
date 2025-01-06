@@ -17,7 +17,7 @@ export default function RootLayout({
       <meta name="theme-color" content="#13012d" />
       <title>PRAJÑĀ 2025</title>
       </head>
-      <body>
+      <body  className='m-auto'>
         <SessionProvider>
           <QuizProvider>
             {children}
