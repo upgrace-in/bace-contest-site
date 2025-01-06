@@ -14,6 +14,7 @@ export default function Dashboard() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray space-y-4">
+            <div className='mb-8'>
             <div>
                 <h1>Welcome <b>{session?.data?.user?.name}</b>!</h1>
             </div>
@@ -24,6 +25,7 @@ export default function Dashboard() {
                     <Quiz key={quiz.id} {...quiz} />
                 ))
             }
+            </div>
             <button
                 className="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75"
                 onClick={handleLogout}

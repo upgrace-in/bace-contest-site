@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Step from "@/components/Step";
 import SendRequest from "@/utils/SendRequest";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Register() {
     const router = useRouter()
@@ -16,6 +16,11 @@ export default function Register() {
         institutionNameOther: "",
         category: "",
     });
+
+    const handleLogout = () => {
+            signOut()
+    }
+
     const [errorMessage, setErrorMessage] = useState<string>("");
 
     const [isPending, setPending] = useState(false)
@@ -85,8 +90,8 @@ export default function Register() {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-purple-100">
-            <div className="bg-white p-10 rounded-2xl w-max shadow-lg">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-purple-100 p-6">
+            <div className="bg-white mb-16 p-10 rounded-2xl w-max shadow-lg">
                 <div className="flex gap-8 justify-center mb-6">
                     {Array.from({ length: 5 }, (_, i) => (
                         <Step key={i} step={step} stepOrder={i + 1} setStep={setStep} />
@@ -247,6 +252,13 @@ export default function Register() {
                     </button>
                 </div>
             </div>
+
+            <button
+                className="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75"
+                onClick={handleLogout}
+            >
+                Logout
+            </button>
         </div>
     );
 }
