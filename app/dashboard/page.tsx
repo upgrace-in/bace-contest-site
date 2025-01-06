@@ -9,8 +9,8 @@ export default function Dashboard() {
     const { quizes, loading } = useQuizContext();
 
     const handleLogout = () => {
-        signOut();
-    };
+        signOut()
+    }
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray space-y-4">

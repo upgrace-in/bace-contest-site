@@ -5,24 +5,24 @@ export async function middleware(req: NextRequest) {
     const token: any = await getToken({ req })
     const url = req.nextUrl.clone()
 
-    if (!token && url.pathname !== "/") {
-        url.pathname = "/";
-        return NextResponse.redirect(url);
+    if (!token && url.pathname !== "/login") {
+        url.pathname = "/"
+        return NextResponse.redirect(url)
     }
 
     if (token && token.isNewUser == true && url.pathname == "/dashboard") {
-        url.pathname = "/register";
-        return NextResponse.redirect(url);
+        url.pathname = "/register"
+        return NextResponse.redirect(url)
     }
 
-    if (token && url.pathname === "/") {
-        url.pathname = "/dashboard";
-        return NextResponse.redirect(url);
+    if (token && url.pathname === "/login") {
+        url.pathname = "/dashboard"
+        return NextResponse.redirect(url)
     }
 
     if (token && token.isNewUser == false && url.pathname === "/register") {
-        url.pathname = "/dashboard";
-        return NextResponse.redirect(url);
+        url.pathname = "/dashboard"
+        return NextResponse.redirect(url)
     }
 
     if (
@@ -30,12 +30,12 @@ export async function middleware(req: NextRequest) {
         url.searchParams.get("error") === "OAuthCallback"
     ) {
         url.pathname = "/dashboard";
-        return NextResponse.redirect("/")
+        return NextResponse.redirect("/login")
     }
 
     return NextResponse.next();
 }
 
 export const config = {
-    matcher: ["/", "/dashboard", "/register", "/api/auth/signin"],
+    matcher: ["/login", "/dashboard", "/register", "/api/auth/signin"],
 }

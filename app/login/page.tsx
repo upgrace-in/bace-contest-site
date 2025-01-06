@@ -1,10 +1,13 @@
 'use client';
+
+import { signIn } from 'next-auth/react';
 import React, { useEffect } from 'react';
 
 export default function LoginPage(): React.JSX.Element {
 
   useEffect(() => {
-    window.location.href = "https://bace.org.in/prajna2025"
+    document.title = "PRAJÑĀ 2025: Signin with Google"
+    signIn('google')
   }, [])
 
   return (
