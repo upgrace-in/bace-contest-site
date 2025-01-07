@@ -136,7 +136,7 @@ export default function Register() {
         <div className="flex flex-col m-auto items-center justify-center mt-14 h-fit w-fit md:w-dvw lg:w-dvw background">
             <div className="flex-1 items-center justify-center p-10">
 
-                <div className="flex flex-col scale-90 md:scale-100 lg:scale-100 bg-white mb-16 p-10 rounded-2xl w-max shadow-lg">
+                <div className="flex flex-col scale-[0.8] md:scale-100 lg:scale-100 bg-white mb-16 p-10 rounded-2xl w-max shadow-lg">
 
                 <div className="flex items-center justify-center mb-14 noselect">
                     <img className="w-1/5 h-auto" src="https://bace.org.in/assets/image/main-data/bace_logo-min.png" alt="BACE"></img>
