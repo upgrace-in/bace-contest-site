@@ -76,7 +76,12 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
             const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
             const minutes = Math.floor((difference / (1000 * 60)) % 60);
             const seconds = Math.floor((difference / 1000) % 60);
-            return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if(days !== 0){
+                return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            } else {
+                 return `${hours}h ${minutes}m ${seconds}s`
+            }
         };
 
         const startTime = startDate?._seconds ? new Date(startDate._seconds * 1000).getTime() : null;

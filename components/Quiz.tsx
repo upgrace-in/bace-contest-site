@@ -15,7 +15,7 @@ export default function Quiz({ id, name, startDate, endDate, questionBankID }: Q
 
     return (
         <div key={id} className="p-4 rounded shadow bg-white">
-            <h2 className="text-xl font-bold text-black">{name}</h2>
+            <h2 className="text-2xl font-bold text-[#13012d]">{name}</h2>
             {/* <h3 className="text-sm text-gray-500">Question Bank ID: {questionBankID}</h3> */}
             <div className="mt-2">
                 {loading?.questions || loading?.result ? (
@@ -25,9 +25,9 @@ export default function Quiz({ id, name, startDate, endDate, questionBankID }: Q
                     </div>
                 ) : (
                     <>
-                        {quizStatus === 'beforeStart' && <p className="text-blue-600">Starting in: {timeLeft}</p>}
-                        {quizStatus === 'afterStart' && <p className="text-green-600">Quiz ends in: {timeLeft}</p>}
-                        {quizStatus === 'ended' && <p className="text-red-600">{timeLeft}</p>}
+                        {quizStatus === 'beforeStart' && <p className="text-blue-600 font-medium">Starting in: {timeLeft}</p>}
+                        {quizStatus === 'afterStart' && <p className="text-green-600 font-medium">Quiz ends in: {timeLeft}</p>}
+                        {quizStatus === 'ended' && <p className="text-red-600 font-medium">{timeLeft}</p>}
 
                         {/* Buttons */}
                         <div className="flex flex-wrap gap-4 mt-4">
