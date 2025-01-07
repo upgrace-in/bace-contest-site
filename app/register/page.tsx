@@ -49,7 +49,7 @@ export default function Register() {
             if(validateField(step)){
                 setStep(step + 1)            
             } else {
-                setErrorMessage("This field is mandatory!");
+                setErrorMessage("This field is required!");
             }
         }
     }
@@ -139,10 +139,10 @@ export default function Register() {
                 <div className="flex flex-col bg-white mb-16 p-10 rounded-2xl w-fit shadow-lg">
 
                 <div className="flex items-center justify-center mb-14 noselect">
-                    <img className="w-1/5 h-auto" src="https://bace.org.in/assets/image/main-data/bace_logo-min.png" alt="BACE"></img>
+                    <img className="w-16 md:w-1/4 lg:w-1/5 h-auto" src="https://bace.org.in/assets/image/main-data/bace_logo-min.png" alt="BACE"></img>
                 </div>
 
-                    <div className="flex gap-8 justify-center mb-6">
+                    <div className="flex gap-4 lg:gap-8 justify-between mb-6">
                         {Array.from({ length: 5 }, (_, i) => (
                             <Step key={i} step={step} stepOrder={i + 1} setStep={setStep} />
                         ))}
@@ -192,7 +192,7 @@ export default function Register() {
                                     type="tel"
                                     name="contactNumber"
                                     value={formData.contactNumber}
-                                    placeholder="Enter your 10 digit mobile number"
+                                    placeholder="Enter your mobile number"
                                     onChange={handleChange}
                                     className="p-3 border mt-2 rounded-lg w-full text-black focus:outline-none focus:ring-2 focus:ring-purple-950"
                                     pattern="[0-9]{10}"

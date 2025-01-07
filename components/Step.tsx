@@ -29,7 +29,7 @@ export default function Step({ step, stepOrder, setStep }: StepProps) {
                 }
             }}
             transition={{ duration: 0.5 }}
-            className="w-12 h-12 rounded-full border fill-white text-gray-500 grid place-items-center"
+            className="w-8 aspect-[1/1] md:w-12 lg:w-12 rounded-full border fill-white text-sm md:text-base lg:text-base text-gray-500 grid place-items-center"
         >
             {status === "complete" ? <CheckIcon /> : <span>{stepOrder}</span>}
         </motion.button>
@@ -39,7 +39,7 @@ export default function Step({ step, stepOrder, setStep }: StepProps) {
 function CheckIcon() {
     return (
         <svg
-            className="text-white h-6 w-6"
+            className="text-white w-4 aspect-[1/1] md:w-6 lg:w-6"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 96 960 960"
