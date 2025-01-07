@@ -29,7 +29,7 @@ async function handler(req: NextRequest) {
             })
         )
 
-        return NextResponse.json({ status: true, id: data.id, questions, answers: user?.[quizID] || {} });
+        return NextResponse.json({ status: true, id: data.id, questions, answers: user?.[quizID].answers || {} });
     } catch (error) {
         console.error('Error checking document:', error);
         return NextResponse.json({ status: false, error });

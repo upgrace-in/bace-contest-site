@@ -24,7 +24,7 @@ export default function QuizForm() {
     const [answers, setAnswers] = useState<QuestionBankProps["answers"]>(questionBank?.answers);
 
     const handleNextStep = () => {
-        submitAnswers(answers, false, quizID)
+        submitAnswers(answers, false, quizID, questionBank.id)
         if (currentStep < totalSteps - 1) {
             setCurrentStep(prevStep => prevStep + 1);
         }
@@ -38,7 +38,7 @@ export default function QuizForm() {
     };
 
     const handleSubmit = async () => {
-        submitAnswers(answers, true, quizID)
+        submitAnswers(answers, true, quizID, questionBank.id)
         console.log('Submitted Answers:', answers);
     };
 

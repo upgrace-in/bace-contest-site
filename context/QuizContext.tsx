@@ -29,7 +29,7 @@ interface QuizContextProps {
     loading: any;
     fetchResult: (hash: any) => void;
     downloadResult: (quizID: string) => void;
-    submitAnswers: (answers: QuestionBankProps["answers"], finalPage: boolean, quizID: string | string[]) => void,
+    submitAnswers: (answers: QuestionBankProps["answers"], finalPage: boolean, quizID: string | string[], questionBankID: string) => void,
     questionBank?: QuestionBankProps;
     quizStatus: string;
     fetchAllQuizes: () => void;
@@ -127,10 +127,10 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
         fetchAllQuizes()
     }, [])
 
-    const submitAnswers = async (answers: QuestionBankProps["answers"], finalPage: boolean, quizID: string | string[]) => {
+    const submitAnswers = async (answers: QuestionBankProps["answers"], finalPage: boolean, quizID: string | string[], questionBankID: string) => {
         setLoading({ answers: true })
         try {
-            const res: any = await SendRequest('/user/update/answers', 'POST', { answers, quizID });
+            const res: any = await SendRequest('/user/update/answers', 'POST', { answers, quizID, questionBankID });
             if (res.data) {
                 if (finalPage) {
                     alert("Successfully recorded your responses!")
