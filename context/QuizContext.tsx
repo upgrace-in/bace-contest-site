@@ -29,7 +29,7 @@ interface QuizContextProps {
     loading: any;
     fetchResult: (hash: any) => void;
     downloadResult: (quizID: string) => void;
-    submitAnswers: (answers: QuestionBankProps["answers"], finalPage: boolean) => void,
+    submitAnswers: (answers: QuestionBankProps["answers"], finalPage: boolean, quizID: string | string[]) => void,
     questionBank?: QuestionBankProps;
     quizStatus: string;
     fetchAllQuizes: () => void;
@@ -77,10 +77,10 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
             const minutes = Math.floor((difference / (1000 * 60)) % 60);
             const seconds = Math.floor((difference / 1000) % 60);
 
-            if(days !== 0){
+            if (days !== 0) {
                 return `${days}d ${hours}h ${minutes}m ${seconds}s`;
             } else {
-                 return `${hours}h ${minutes}m ${seconds}s`
+                return `${hours}h ${minutes}m ${seconds}s`
             }
         };
 
@@ -112,7 +112,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
             const res: any = await SendRequest('/questions/get', 'POST', { questionBankID, quizID });
             if (!res.data.status) throw res.data
             setQuestions(res.data)
-            router.push('/start/quiz')
+            router.push(`/start/quiz/${quizID}`)
         } catch (error: any) {
             alert(error?.message || "Something went wrong!!!")
             console.error('Error fetching questions:', error.message);
@@ -127,10 +127,10 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
         fetchAllQuizes()
     }, [])
 
-    const submitAnswers = async (answers: QuestionBankProps["answers"], finalPage: boolean) => {
+    const submitAnswers = async (answers: QuestionBankProps["answers"], finalPage: boolean, quizID: string | string[]) => {
         setLoading({ answers: true })
         try {
-            const res: any = await SendRequest('/user/update/answers', 'POST', { answers });
+            const res: any = await SendRequest('/user/update/answers', 'POST', { answers, quizID });
             if (res.data) {
                 if (finalPage) {
                     alert("Successfully recorded your responses!")

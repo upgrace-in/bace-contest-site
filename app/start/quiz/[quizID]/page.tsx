@@ -1,6 +1,6 @@
 'use client';
 import { QuestionBankProps, useQuizContext } from '@/context/QuizContext';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 interface QuizQuestion {
@@ -11,8 +11,9 @@ interface QuizQuestion {
 export default function QuizForm() {
     const { questionBank, submitAnswers } = useQuizContext();
     const router = useRouter();
+    const { quizID } = useParams()
 
-    if (!questionBank || questionBank?.questions?.length === 0) {
+    if (!questionBank || questionBank?.questions?.length === 0 || !quizID) {
         return router.push('/dashboard');
     }
 
@@ -23,7 +24,7 @@ export default function QuizForm() {
     const [answers, setAnswers] = useState<QuestionBankProps["answers"]>(questionBank?.answers);
 
     const handleNextStep = () => {
-        submitAnswers(answers, false)
+        submitAnswers(answers, false, quizID)
         if (currentStep < totalSteps - 1) {
             setCurrentStep(prevStep => prevStep + 1);
         }
@@ -37,7 +38,7 @@ export default function QuizForm() {
     };
 
     const handleSubmit = async () => {
-        submitAnswers(answers, true)
+        submitAnswers(answers, true, quizID)
         console.log('Submitted Answers:', answers);
     };
 

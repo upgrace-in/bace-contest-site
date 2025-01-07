@@ -4,9 +4,9 @@ import { NextRequest, NextResponse } from 'next/server';
 async function handler(req: NextRequest) {
     try {
         const body = await req.json()
-        const { answers, email } = body
+        const { answers, email, quizID } = body
 
-        await dbFunc.updateByDocumentID('users', email, { "answers": answers }).catch(e => { throw e })
+        await dbFunc.updateByDocumentID('users', email, { [quizID]: answers }).catch(e => { throw e })
 
         return NextResponse.json({ status: true })
     } catch (error) {

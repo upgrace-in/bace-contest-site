@@ -31,12 +31,6 @@ export default function Quiz({ id, name, startDate, endDate, questionBankID }: Q
 
                         {/* Buttons */}
                         <div className="flex flex-wrap gap-4 mt-4">
-                            {/* <button
-                                className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-                                onClick={() => fetchQuestions(questionBankID, id)}
-                            >
-                                Start Quiz
-                            </button> */}
                             {quizStatus === 'afterStart' && (
                                 <button
                                     className="px-4 py-2 mt-4 bg-purple-950 text-white font-semibold size-full rounded-lg shadow-md hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-800 focus:ring-opacity-75"
