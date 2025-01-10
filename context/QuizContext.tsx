@@ -114,7 +114,7 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
             setQuestions(res.data)
             router.push(`/start/quiz/${quizID}`)
         } catch (error: any) {
-            alert(error || "Something went wrong!!!")
+            alert(error?.error || "Something went wrong!!!")
             console.error('Error fetching questions:', error.message);
         } finally {
             setTimeout(() => {
