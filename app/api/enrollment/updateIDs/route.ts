@@ -28,7 +28,7 @@ async function extractCombinedDigit(csvFilePath: string): Promise<number[]> {
 
 const updateIDs = async (IDs: any[]) => {
     for (let ID of IDs)
-        await dbFunc.add('enrollmentIDs', ID, { expire: false }).catch(e => { console.log(e) })
+        await dbFunc.add('enrollmentIDs', ID.toString(), { expire: false }).catch(e => { console.log(e) })
 }
 
 export async function POST(req: NextRequest) {
@@ -37,6 +37,7 @@ export async function POST(req: NextRequest) {
         if (key !== process.env.NEXTAUTH_SECRET) throw "Invalid Key!"
         const csvFilePath = path.join(process.cwd(), '/utils/enrollmentIDs.csv');
         const combinedDigits = await extractCombinedDigit(csvFilePath);
+        // console.log(combinedDigits)
         updateIDs(combinedDigits)
         return NextResponse.json({ status: "Successfully Updated" })
     } catch (error: any) {
