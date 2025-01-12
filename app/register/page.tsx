@@ -215,7 +215,7 @@ export default function Register() {
                                     required
                                 >
                                     <option value="" disabled hidden>Select Category</option>
-                                    <option value="Class 9-12">Class 9-12</option>
+                                    <option value="School Student">School Student</option>
                                     <option value="College Student">College Student</option>
                                 </select>
                                 </label>
@@ -232,18 +232,19 @@ export default function Register() {
                                     required
                                 >
                                     <option value="" disabled hidden>Select Institution</option>
-                                    <option value="Sharda University">Sharda University</option>
-                                    <option value="GNIOT">GNIOT</option>
-                                    <option value="GL - Bajaj">GL - Bajaj</option>
-                                    <option value="JNU">JNU</option>
-                                    <option value="NIU">NIU</option>
-                                    <option value="Innovation Institute">Innovation Institute</option>
-                                    <option value="GBU">GBU</option>
-                                    <option value="Nalanda">Nalanda</option>
-                                    <option value="DU">DU</option>
                                     <option value="AIIMS">AIIMS</option>
-                                    <option value="VMMC - Safdarjung">VMMC - Safdarjung</option>
+                                    <option value="Akhilesh Das Gupta College">Akhilesh Das Gupta College</option>
+                                    <option value="DU">DU</option>
+                                    <option value="GBU">GBU</option>
+                                    <option value="GL - Bajaj">GL - Bajaj</option>
+                                    <option value="GNIOT">GNIOT</option>
                                     <option value="IIT">IIT</option>
+                                    <option value="Innovation Institute">Innovation Institute</option>
+                                    <option value="JNU">JNU</option>
+                                    <option value="Nalanda">Nalanda</option>
+                                    <option value="NIU">NIU</option>
+                                    <option value="Sharda University">Sharda University</option>
+                                    <option value="VMMC - Safdarjung">VMMC - Safdarjung</option>
                                     <option value="Other">Other</option>
                                 </select>
                                 {formData.institutionName === "Other" && (

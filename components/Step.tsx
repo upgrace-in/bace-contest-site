@@ -12,7 +12,8 @@ export default function Step({ step, stepOrder, setStep }: StepProps) {
 
     return (
         <motion.button
-            onClick={() => setStep(stepOrder)}
+            // onClick={() => setStep(stepOrder)}
+            disabled={true}
             initial={false}
             animate={status}
             variants={{
