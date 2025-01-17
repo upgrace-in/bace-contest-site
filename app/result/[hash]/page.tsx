@@ -1,14 +1,23 @@
 'use client'
 
 import { useQuizContext } from "@/context/QuizContext";
+import { useSession } from "next-auth/react";
 import { useParams } from "next/navigation"
 import { useEffect } from "react";
+import { Quicksand } from 'next/font/google';
+import html2canvas from 'html2canvas';
+import { useRouter } from "next/navigation";
+
+const quicksand = Quicksand({
+    subsets: ['latin'],
+    weight: ['300', '400', '500', '600', '700'],
+});
 
 export default function Handler() {
-
+    const session: any = useSession();
     const { hash } = useParams()
-
     const { fetchResult, result } = useQuizContext();
+    const router = useRouter()
 
     useEffect(() => {
         if (hash)
@@ -16,14 +25,61 @@ export default function Handler() {
     }, [hash])
 
     useEffect(() => {
-        if (result)
+        if (result) {
+            handleDownload()
             console.log(result)
+        }
     }, [result])
 
+    const handleDownload = async () => {
+        try {
+            const certificateElement = document.querySelector('.certificate-container') as HTMLDivElement | null;
+
+            if (certificateElement) {
+                const canvas = await html2canvas(certificateElement, {
+                    scale: 1,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: null,
+                    height: certificateElement.scrollHeight,
+                    width: certificateElement.scrollWidth,
+                });
+
+                canvas.toBlob((blob: Blob | null) => {
+                    if (blob) {
+                        const url = window.URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.href = url;
+                        const safeName = 'prajna-2025'
+                        link.download = `${safeName}-certificate.png`;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        window.URL.revokeObjectURL(url);
+                    }
+                }, 'image/png', 1.0);
+            }
+        } catch (error) {
+            console.error('Error generating certificate:', error);
+        } finally {
+            setTimeout(() => {
+                router.push("/dashboard")
+            }, 1000)
+        }
+    };
+
     return (
-        <>
-            <h1>Display the image & adjust the items</h1>
-            {JSON.stringify(result) || ''}
-        </>
+        <div className="flex flex-col items-center p-8 opacity-0">
+            <div className="relative certificate-container w-full max-w-3xl">
+                <h1 className={`absolute left-1/2 top-[260px] -translate-x-1/2 -translate-y-1/2 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-black z-10 text-center w-full px-4 ${quicksand.className}`}>
+                    {result?.name}
+                </h1>
+                <img
+                    src="/certificate.png"
+                    alt="Certificate"
+                    className="w-full h-auto"
+                />
+            </div>
+        </div>
     )
 }

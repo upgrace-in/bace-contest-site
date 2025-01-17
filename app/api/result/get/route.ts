@@ -12,7 +12,7 @@ async function handler(req: NextRequest) {
 
         if (!data?.[quizID]) throw "Result not yet generated!"
 
-        const hash = jwt.sign({ result: data?.[quizID], certificate: quiz?.certificate }, process.env.NEXTAUTH_SECRET || "", { expiresIn: '1h' });
+        const hash = jwt.sign({ name: data?.fullName, result: data?.[quizID], certificate: quiz?.certificate }, process.env.NEXTAUTH_SECRET || "", { expiresIn: '1h' });
 
         return NextResponse.json({ hash });
     } catch (error) {
