@@ -56,8 +56,8 @@ const DataDisplayComponent: React.FC<Props> = ({ data, loading }) => {
               .filter((key) => key.startsWith("QZ-"))
               .reduce((total, key) => total + item[key].results.correctAnswers, 0);
 
-            const status = marks < 48 ? "Failed" : "Pass";
-            const statusColor = marks < 48 ? "text-red-500" : "text-green-500";
+            const status = marks < 40 ? "Failed" : "Pass";
+            const statusColor = marks < 40 ? "text-red-500" : "text-green-500";
 
             return (
               <tr
