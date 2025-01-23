@@ -40,7 +40,7 @@ export default function Quiz({ id, name, startDate, endDate, questionBankID }: Q
                                 </button>
                             )}
                             {quizStatus === 'ended' && (
-                                <p className="text-blue-600 font-medium">Quiz has been to concluded. However, it'll reopen on 1st February, 2025 for submission so if you've missed the chance to submit or participate, please wait for few days and then, you can participate.</p>
+                                <p className="text-gray-600 font-medium">Quiz has been to concluded. However, it'll reopen on 1st February, 2025 for submission so if you've missed the chance to submit or participate, please wait for few days and then, you can participate.</p>
                                 // <button
                                 //     className="px-4 py-2 mt-4 bg-blue-500 text-white font-semibold size-full rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
                                 //     onClick={() => downloadResult(id)}
