@@ -9,33 +9,89 @@ type DataItem = {
   institutionName: string;
   category: string;
   enrollmentID: string;
-  [key: string]: any; // To handle dynamic keys like QZ-1734779069569-orc4kp
+  [key: string]: any;
 };
 
 type Props = {
-  data?: DataItem[] | null; // Data can be undefined or null
+  data?: DataItem[] | null;
+  loading: any;
 };
 
-const DataDisplayComponent: React.FC<Props> = ({ data }) => {
+const DataDisplayComponent: React.FC<Props> = ({ data, loading }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Handle cases where data is null, undefined, or empty
   if (!data || data.length === 0) {
     return (
-      <div className="p-6 bg-gray-100 min-h-screen flex items-center justify-center">
-        <h1 className="text-2xl font-bold text-red-500 text-center">
-          No data available to display.
+      <div className="p-6 min-h-screen flex items-center justify-center">
+        <h1 className="text-2xl font-bold text-white-500 text-center">
+          {!loading && "Permission Denied !!!"}
         </h1>
       </div>
     );
   }
 
-  // Filter data based on the search term
   const filteredData = data.filter((item) =>
     Object.values(item)
       .join(" ")
       .toLowerCase()
       .includes(searchTerm.toLowerCase())
+  );
+
+  const renderTable = () => (
+    <table className="table-auto w-full border border-gray-300 bg-white shadow-lg rounded-lg">
+      <thead className="bg-gray-200">
+        <tr>
+          {["Full Name", "Email", "Contact Number", "Institution Name",
+            "Category", "Enrollment ID", "Result (Out of 100)", "Status"].map((header) => (
+              <th key={header} className="border border-gray-300 px-4 py-2 text-left text-black">
+                {header}
+              </th>
+            ))}
+        </tr>
+      </thead>
+      <tbody>
+        {filteredData.length > 0 ? (
+          filteredData.map((item, index) => {
+            const marks = Object.keys(item)
+              .filter((key) => key.startsWith("QZ-"))
+              .reduce((total, key) => total + item[key].results.correctAnswers, 0);
+
+            const status = marks < 48 ? "Failed" : "Pass";
+            const statusColor = marks < 48 ? "text-red-500" : "text-green-500";
+
+            return (
+              <tr
+                key={index}
+                className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"} hover:bg-gray-300`}
+              >
+                {[
+                  item.fullName,
+                  item.email,
+                  item.contactNumber,
+                  item.institutionName,
+                  item.category,
+                  item.enrollmentID,
+                  marks
+                ].map((value, i) => (
+                  <td key={i} className="border border-gray-300 px-4 py-2 text-black">
+                    {value}
+                  </td>
+                ))}
+                <td className={`border border-gray-300 px-4 py-2 font-bold ${statusColor}`}>
+                  {status}
+                </td>
+              </tr>
+            );
+          })
+        ) : (
+          <tr>
+            <td className="text-center text-gray-500 py-4 text-black">
+              No results found.
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
   );
 
   return (
@@ -44,7 +100,6 @@ const DataDisplayComponent: React.FC<Props> = ({ data }) => {
         User Data Table
       </h1>
 
-      {/* Search Input */}
       <div className="mb-4">
         <input
           type="text"
@@ -55,88 +110,8 @@ const DataDisplayComponent: React.FC<Props> = ({ data }) => {
         />
       </div>
 
-      {/* Table */}
       <div className="overflow-x-auto">
-        <table className="table-auto w-full border border-gray-300 bg-white shadow-lg rounded-lg">
-          <thead className="bg-gray-200">
-            <tr>
-              <th className="border border-gray-300 px-4 py-2 text-left text-black">
-                Full Name
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-left text-black">
-                Email
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-left text-black">
-                Contact Number
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-left text-black">
-                Institution Name
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-left text-black">
-                Category
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-left text-black">
-                Enrollment ID
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-left text-black">
-                Result (Out of 100)
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredData.length > 0 ? (
-              filteredData.map((item, index) => (
-                <tr
-                  key={index}
-                  className={`${
-                    index % 2 === 0 ? "bg-gray-100" : "bg-white"
-                  } hover:bg-gray-300`}
-                >
-                  
-                  <td className="border border-gray-300 px-4 py-2 text-black">
-                    {item.fullName}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2 text-black">
-                    {item.email}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2 text-black">
-                    {item.contactNumber}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2 text-black">
-                    {item.institutionName}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2 text-black">
-                    {item.category}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2 text-black">
-                    {item.enrollmentID}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2 text-black">
-                    {Object.keys(item)
-                      .filter((key) => key.startsWith("QZ-"))
-                      .map((key) => {
-                        const quizData = item[key];
-                        return (
-                          <div key={key}>
-                            {quizData.results.correctAnswers}
-                          </div>
-                        );
-                      })}
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td
-                  colSpan={8}
-                  className="text-center text-gray-500 py-4 text-black"
-                >
-                  No results found.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+        {renderTable()}
       </div>
     </div>
   );
