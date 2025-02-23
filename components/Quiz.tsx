@@ -27,7 +27,8 @@ export default function Quiz({ id, name, startDate, endDate, questionBankID }: Q
                     <>
                         {quizStatus === 'beforeStart' && <p className="text-blue-600 font-medium">Starting in: {timeLeft}</p>}
                         {quizStatus === 'afterStart' && <p className="text-green-600 font-medium">Quiz ends in: {timeLeft}</p>}
-                        {quizStatus === 'ended' && <p className="text-red-600 font-medium">{timeLeft}</p>}
+                        {/* {quizStatus === 'ended' && <p className="text-red-600 font-medium">{timeLeft}</p>} */}
+                        {quizStatus === 'ended' && <p className="text-red-600 font-medium">{timeLeft} <p className="text-gray-700 font-medium mt-2">Thank you for your wonderful participation. Round 1 has been concluded. Results have been shared on our WhatsApp group. If you are not part of PRAJÑÀ WhatsApp group, please message on 7982833034.</p></p>}
 
                         {/* Buttons */}
                         <div className="flex flex-wrap gap-4 mt-4">
@@ -40,13 +41,14 @@ export default function Quiz({ id, name, startDate, endDate, questionBankID }: Q
                                 </button>
                             )}
                             {quizStatus === 'ended' && (
-                                <p className="text-gray-700 font-medium">Thank you for your wonderful participation. Round 1 has been concluded. Results have been shared on our WhatsApp group. If you are not part of PRAJÑÀ WhatsApp group, please message on 7982833034.</p>
-                                // <button
-                                //     className="px-4 py-2 mt-4 bg-blue-500 text-white font-semibold size-full rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-                                //     onClick={() => downloadResult(id)}
-                                // >
-                                //     Download Result
-                                // </button>
+                                
+                                // <p className="text-gray-700 font-medium">Thank you for your wonderful participation. Round 1 has been concluded. Results have been shared on our WhatsApp group. If you are not part of PRAJÑÀ WhatsApp group, please message on 7982833034.</p>
+                                <button
+                                    className="px-4 py-2 mt-4 bg-blue-500 text-white font-semibold size-full rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+                                    onClick={() => downloadResult(id)}
+                                >
+                                    Download Certificate
+                                </button>
                             )}
                         </div>
                     </>

@@ -50,8 +50,8 @@ export default function Handler() {
                         const url = window.URL.createObjectURL(blob);
                         const link = document.createElement('a');
                         link.href = url;
-                        const safeName = 'prajna-2025'
-                        link.download = `${safeName}-certificate.png`;
+                        const safeName = 'PRAJÑĀ 2025'
+                        link.download = `${safeName} Participation Certificate.png`;
                         document.body.appendChild(link);
                         link.click();
                         document.body.removeChild(link);
@@ -70,8 +70,8 @@ export default function Handler() {
 
     return (
         <div className="flex flex-col items-center p-8 opacity-0">
-            <div className="relative certificate-container w-full max-w-3xl">
-                <h1 className={`absolute left-1/2 top-[260px] -translate-x-1/2 -translate-y-1/2 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-black z-10 text-center w-full px-4 ${quicksand.className}`}>
+            <div className="relative certificate-container w-[2000px] max-w-3xl">
+                <h1 className={`absolute left-1/2 top-[260px] -translate-x-1/2 -translate-y-1/2 text-4xl sm:text-4xl md:text-4xl lg:text-4xl font-bold text-black z-10 text-center w-full px-4 ${quicksand.className}`}>
                     {result?.name}
                 </h1>
                 <img
