@@ -26,8 +26,8 @@ export default function Dashboard() {
                 <div className='text-center mb-3'>
                     <h1>Welcome <b>{session?.data?.user?.name}</b>!</h1>
                 </div>
-                {loading?.quizes && <p>Loading quizzes...</p>}
-                {!loading?.quizes && quizes?.length === 0 && <p>No quizzes available</p>}
+                {loading?.quizes && <p>Loading...</p>}
+                {!loading?.quizes && quizes?.length === 0 && <p>No quizzes available!</p>}
                 {
                     !loading?.quizes && quizes?.length > 0 && quizes?.map((quiz: QuizProps) => (
                         <Quiz key={quiz.id} {...quiz} />
