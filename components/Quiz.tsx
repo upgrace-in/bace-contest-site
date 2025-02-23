@@ -15,7 +15,7 @@ export default function Quiz({ id, name, startDate, endDate, questionBankID }: Q
 
     return (
         <div key={id} className="p-4 rounded shadow bg-white">
-            <h2 className="text-2xl font-bold text-[#13012d]">{name}</h2>
+            <h2 className="text-2xl font-bold text-[#13012d] noselect">{name}</h2>
             {/* <h3 className="text-sm text-gray-500">Question Bank ID: {questionBankID}</h3> */}
             <div className="mt-2">
                 {loading?.questions || loading?.result ? (
@@ -25,10 +25,10 @@ export default function Quiz({ id, name, startDate, endDate, questionBankID }: Q
                     </div>
                 ) : (
                     <>
-                        {quizStatus === 'beforeStart' && <p className="text-blue-600 font-medium">Starting in: {timeLeft}</p>}
-                        {quizStatus === 'afterStart' && <p className="text-green-600 font-medium">Quiz ends in: {timeLeft}</p>}
+                        {quizStatus === 'beforeStart' && <p className="text-blue-600 font-medium noselect">Starting in: {timeLeft}</p>}
+                        {quizStatus === 'afterStart' && <p className="text-green-600 font-medium nodelect">Quiz ends in: {timeLeft}</p>}
                         {/* {quizStatus === 'ended' && <p className="text-red-600 font-medium">{timeLeft}</p>} */}
-                        {quizStatus === 'ended' && <p className="text-red-600 font-medium">{timeLeft} <p className="text-gray-700 font-normal mt-2 noselect">Thank you for your wonderful participation. Round 1 has been concluded. Results have been shared on our WhatsApp group. If you are not part of PRAJÑÀ WhatsApp group, please message on 7982833034.</p></p>}
+                        {quizStatus === 'ended' && <p className="text-red-600 font-medium noselect">{timeLeft} <p className="text-gray-700 font-normal mt-2 noselect">Thank you for your wonderful participation. Round 1 has been concluded. Results have been shared on our WhatsApp group. If you are not part of PRAJÑÀ WhatsApp group, please message on 7982833034.</p></p>}
 
                         {/* Buttons */}
                         <div className="flex flex-wrap gap-4 mt-4">

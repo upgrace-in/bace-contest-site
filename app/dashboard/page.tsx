@@ -23,7 +23,7 @@ export default function Dashboard() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray space-y-4">
             <div className='mb-8'>
-                <div className='text-center mb-3'>
+                <div className='text-center mb-3 noselect'>
                     <h1>Welcome <b>{session?.data?.user?.name}</b>!</h1>
                 </div>
                 {loading?.quizes && <p>Loading...</p>}
